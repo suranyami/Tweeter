@@ -7,8 +7,23 @@
 //
 
 #import "ViewController.h"
+#import <Twitter/Twitter.h>
 
 @implementation ViewController
+
+@synthesize twitterWebView;
+
+-(IBAction)handleTweetButtonTapped:(id)sender
+{
+  NSLog(@"handleTweetButtonTapped");
+  if ([TWTweetComposeViewController canSendTweet]) {
+    TWTweetComposeViewController *tweetVC = [[TWTweetComposeViewController alloc] init];
+    [tweetVC setInitialText: @"I just finished a project in iOS SDK Development, #pragios"];
+    [self presentViewController: tweetVC animated:YES completion:NULL];
+  } else {
+    NSLog(@"Can't send tweet");
+  }
+}
 
 - (void)didReceiveMemoryWarning
 {
